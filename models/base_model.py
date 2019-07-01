@@ -41,7 +41,7 @@ class BaseModel():
         add key named \'__class__\' with the name of the class
         format to isoformat() to methods created_at and update_at
         '''
-        new_dict = self.__dict__
+        new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
         new_dict['created_at'] = self.created_at.isoformat()
         new_dict['update_at'] = self.update_at.isoformat()

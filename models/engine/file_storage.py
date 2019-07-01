@@ -2,6 +2,12 @@
 ''' Module file_storage which create a class FileStorage '''
 import json
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage():
@@ -30,8 +36,14 @@ class FileStorage():
             File.write(json.dumps(dict_ob2) + '\n')
 
     def reload(self):
-        ''' Method to deserializes a JSON file to an attribute __objects '''
-        d_bs = {'BaseModel': BaseModel}
+        '''
+        Method to deserializes a JSON file to an attribute __objects as:
+        * BaseModel: BaseModel * User: User * State: State * City: city
+        * Amenity: Amenity * Place: Place * Review: Review
+        '''
+        d_bs = {'BaseModel': BaseModel, 'User': User,
+                'State': State, 'City': City, 'Amenity': Amenity,
+                'Place': Place, 'Review': Review}
         fl_sg = FileStorage.__objects
         try:
             with open('{}'.format(FileStorage.__file_path), 'r') as File:
