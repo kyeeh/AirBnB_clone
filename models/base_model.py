@@ -20,7 +20,7 @@ class BaseModel():
         else:
             self.id = str(uuid4())
             self.created_at = datetime.now()
-            self.update_at = datetime.now()
+            self.updated_at = datetime.now()
             models.storage.new(self)
 
     def __str__(self):
@@ -32,17 +32,17 @@ class BaseModel():
 
     def save(self):
         ''' updates \'updated_at\' with the current datetime '''
-        self.update_at = datetime.now()
+        self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
         '''
         returns a dictionary containing all keys/values of dict
         add key named \'__class__\' with the name of the class
-        format to isoformat() to methods created_at and update_at
+        format to isoformat() to methods created_at and updated_at
         '''
         new_dict = self.__dict__.copy()
         new_dict['__class__'] = self.__class__.__name__
         new_dict['created_at'] = self.created_at.isoformat()
-        new_dict['update_at'] = self.update_at.isoformat()
+        new_dict['updated_at'] = self.updated_at.isoformat()
         return new_dict
