@@ -12,20 +12,20 @@ class TestBaseModel(unittest.TestCase):
     """
 
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         """
         Set Base Model Class
         """
-        self.bm = BaseModel()
-        self.bm.name = "CLI"
-        self.bm.num = 73
+        cls.bm = BaseModel()
+        cls.bm.name = "CLI"
+        cls.bm.num = 73
 
     @classmethod
-    def teardown(self):
+    def teardown(cls):
         """
         Delete Base Model Class
         """
-        del self.bm
+        del cls.bm
 
     def test_documentation(self):
         """
