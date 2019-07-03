@@ -61,7 +61,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(True, "first_name" in user_str)
         self.assertEqual(True, "last_name" in user_str)
         self.assertEqual(True, "email" in user_str)
-        self.assertEqual(True, "password" in user_str)          
+        self.assertEqual(True, "password" in user_str)
         self.assertEqual(True, "created_at" in user_str)
         self.assertEqual(True, "updated_at" in user_str)
         self.assertEqual(True, "datetime.datetime" in user_str)
