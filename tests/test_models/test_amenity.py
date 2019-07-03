@@ -17,15 +17,15 @@ class TestAmenity(unittest.TestCase):
         """
         Setup Amenity Class
         """
-        cls.amnt = Amenity()
-        cls.amnt.name = "Cundinamarca"
+        cls.amt = Amenity()
+        cls.amt.name = "Cundinamarca"
 
     @classmethod
     def teardown(cls):
         """
         Delete Amenity Class
         """
-        del cls.amnt
+        del cls.amt
 
     def test_documentation(self):
         """
@@ -47,34 +47,34 @@ class TestAmenity(unittest.TestCase):
         """
         Check object as instance of Amenity
         """
-        self.assertTrue(isinstance(self.amnt, Amenity))
+        self.assertTrue(isinstance(self.amt, Amenity))
 
     def test_str(self):
         """
         Check string representation of Amenity object
         """
-        ste_str = str(self.amnt)
-        self.assertEqual(True, "[Amenity] ({})".format(self.amnt.id) in ste_str)
-        self.assertEqual(True, "name" in ste_str)
-        self.assertEqual(True, "created_at" in ste_str)
-        self.assertEqual(True, "updated_at" in ste_str)
-        self.assertEqual(True, "datetime.datetime" in ste_str)
+        amt_str = str(self.amt)
+        self.assertEqual(True, "[Amenity] ({})".format(self.amt.id) in amt_str)
+        self.assertEqual(True, "name" in amt_str)
+        self.assertEqual(True, "created_at" in amt_str)
+        self.assertEqual(True, "updated_at" in amt_str)
+        self.assertEqual(True, "datetime.datetime" in amt_str)
 
     def test_save(self):
         """
         Check save method
         """
-        self.amnt.save()
-        self.assertNotEqual(self.amnt.created_at, self.amnt.updated_at)
+        self.amt.save()
+        self.assertNotEqual(self.amt.created_at, self.amt.updated_at)
 
     def test_to_dict(self):
         """
         Check dictionary method
         """
-        amnt_dict = self.amnt.to_dict()
-        self.assertEqual(self.amnt.__class__.__name__, 'Amenity')
-        self.assertIsInstance(amnt_dict['created_at'], str)
-        self.assertIsInstance(amnt_dict['updated_at'], str)
+        amt_dict = self.amt.to_dict()
+        self.assertEqual(self.amt.__class__.__name__, 'Amenity')
+        self.assertIsInstance(amt_dict['created_at'], str)
+        self.assertIsInstance(amt_dict['updated_at'], str)
 
 if __name__ == "__main__":
     unittest.main()
