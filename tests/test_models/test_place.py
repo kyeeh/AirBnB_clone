@@ -19,6 +19,18 @@ class TestPlace(unittest.TestCase):
         """
         cls.place = Place()
         cls.place.name = "Cundinamarca"
+        cls.place = Place()
+        cls.place.city_id = "3773-pqrs"
+        cls.place.user_id = "7337-abcd"
+        cls.place.name = "Tierra Caliente"
+        cls.place.description = "Playa, sol y arena"
+        cls.place.number_rooms = 73
+        cls.place.number_bathrooms = 3
+        cls.place.max_guest = 8873
+        cls.place.price_by_night = 30
+        cls.place.latitude = 73.0
+        cls.place.longitude = 37.0
+        cls.place.amenity_ids = ["0001-amnt"]
 
     @classmethod
     def teardown(cls):
@@ -70,6 +82,22 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(True, "created_at" in plc_str)
         self.assertEqual(True, "updated_at" in plc_str)
         self.assertEqual(True, "datetime.datetime" in plc_str)
+
+    def test_attr_types(self):
+        """
+        Check types defined
+        """
+        self.assertEqual(type(self.place.city_id), str)
+        self.assertEqual(type(self.place.user_id), str)
+        self.assertEqual(type(self.place.name), str)
+        self.assertEqual(type(self.place.description), str)
+        self.assertEqual(type(self.place.number_rooms), int)
+        self.assertEqual(type(self.place.number_bathrooms), int)
+        self.assertEqual(type(self.place.max_guest), int)
+        self.assertEqual(type(self.place.price_by_night), int)
+        self.assertEqual(type(self.place.latitude), float)
+        self.assertEqual(type(self.place.longitude), float)
+        self.assertEqual(type(self.place.amenity_ids), list)
 
     def test_save(self):
         """

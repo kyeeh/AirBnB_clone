@@ -18,6 +18,7 @@ class TestCity(unittest.TestCase):
         Setup City Class
         """
         cls.city = City()
+        cls.city.state_id = "3773-pqrs"
         cls.city.name = "Bogotá"
 
     @classmethod
