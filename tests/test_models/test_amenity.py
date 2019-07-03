@@ -18,7 +18,7 @@ class TestAmenity(unittest.TestCase):
         Setup Amenity Class
         """
         cls.amt = Amenity()
-        cls.amt.name = "Cundinamarca"
+        cls.amt.name = "Snaks"
 
     @classmethod
     def teardown(cls):
@@ -59,6 +59,12 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(True, "created_at" in amt_str)
         self.assertEqual(True, "updated_at" in amt_str)
         self.assertEqual(True, "datetime.datetime" in amt_str)
+
+    def test_attr_types(self):
+        """
+        Check types defined
+        """
+        self.assertEqual(type(self.amt.name), str)
 
     def test_save(self):
         """
