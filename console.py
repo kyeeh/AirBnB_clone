@@ -140,6 +140,185 @@ class HBNBCommand(cmd.Cmd):
                     print('** no instance found **')
                     return
 
+    def count(self, args):
+        '''
+        count all string representation of all instances
+        based or not on the class name
+        ex: \'(hbnb ) all\' or \'(hbnb )\' all BaseModel
+        '''
+        count = 0
+        ls_val = []
+        arg = args.split()
+        if arg[0] in class_ls:
+            for class_key in store_all:
+                if arg[0] in class_key:
+                    ls_val.append(str(store_all[class_key]))
+                    count += 1
+            print(count)
+        else:
+            print('** class doesn\'t exist **')
+
+    @staticmethod
+    def do_BaseModel(args):
+        '''
+        do_BaseModel, use the class.command of the console as input
+        while execute the command inserted
+        '''
+        if args:
+            fnd = args[args.find('("') + 2:args.find('")')]
+            command = args[0:args.find('(')]
+            arg = command.split(".")
+            if arg[1] == 'all':
+                HBNBCommand.do_all(HBNBCommand, 'BaseModel')
+            if arg[1] == 'count':
+                HBNBCommand.count(HBNBCommand, 'BaseModel')
+            if arg[1] == 'show':
+                HBNBCommand.do_show(HBNBCommand, 'BaseModel {}'.format(fnd))
+            if arg[1] == 'destroy':
+                HBNBCommand.do_destroy(HBNBCommand, 'BaseModel {}'.format(fnd))
+            if arg[1] == 'update':
+                ls_fd = fnd.split("\", \"")
+                st = 'BaseModel {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                HBNBCommand.do_update(HBNBCommand, st)
+
+    @staticmethod
+    def do_User(args):
+        '''
+        do_User, use the class.command of the console as input
+        while execute the command inserted
+        '''
+        if args:
+            fnd = args[args.find('("') + 2:args.find('")')]
+            command = args[0:args.find('(')]
+            arg = command.split(".")
+            if arg[1] == 'all':
+                HBNBCommand.do_all(HBNBCommand, 'User')
+            if arg[1] == 'count':
+                HBNBCommand.count(HBNBCommand, 'User')
+            if arg[1] == 'show':
+                HBNBCommand.do_show(HBNBCommand, 'User {}'.format(fnd))
+            if arg[1] == 'destroy':
+                HBNBCommand.do_destroy(HBNBCommand, 'User {}'.format(fnd))
+            if arg[1] == 'update':
+                ls_fd = fnd.split("\", \"")
+                st = 'User {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                HBNBCommand.do_update(HBNBCommand, st)
+
+    @staticmethod
+    def do_State(args):
+        '''
+        do_State, use the class.command of the console as input
+        while execute the command inserted
+        '''
+        if args:
+            fnd = args[args.find('("') + 2:args.find('")')]
+            command = args[0:args.find('(')]
+            arg = command.split(".")
+            if arg[1] == 'all':
+                HBNBCommand.do_all(HBNBCommand, 'State')
+            if arg[1] == 'count':
+                HBNBCommand.count(HBNBCommand, 'State')
+            if arg[1] == 'show':
+                HBNBCommand.do_show(HBNBCommand, 'State {}'.format(fnd))
+            if arg[1] == 'destroy':
+                HBNBCommand.do_destroy(HBNBCommand, 'State {}'.format(fnd))
+            if arg[1] == 'update':
+                ls_fd = fnd.split("\", \"")
+                st = 'State {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                HBNBCommand.do_update(HBNBCommand, st)
+
+    @staticmethod
+    def do_City(args):
+        '''
+        do_City, use the class.command of the console as input
+        while execute the command inserted
+        '''
+        if args:
+            fnd = args[args.find('("') + 2:args.find('")')]
+            command = args[0:args.find('(')]
+            arg = command.split(".")
+            if arg[1] == 'all':
+                HBNBCommand.do_all(HBNBCommand, 'City')
+            if arg[1] == 'count':
+                HBNBCommand.count(HBNBCommand, 'City')
+            if arg[1] == 'show':
+                HBNBCommand.do_show(HBNBCommand, 'City {}'.format(fnd))
+            if arg[1] == 'destroy':
+                HBNBCommand.do_destroy(HBNBCommand, 'City {}'.format(fnd))
+            if arg[1] == 'update':
+                ls_fd = fnd.split("\", \"")
+                st = 'City {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                HBNBCommand.do_update(HBNBCommand, st)
+
+    @staticmethod
+    def do_Amenity(args):
+        '''
+        do_Amenity, use the class.command of the console as input
+        while execute the command inserted
+        '''
+        if args:
+            fnd = args[args.find('("') + 2:args.find('")')]
+            command = args[0:args.find('(')]
+            arg = command.split(".")
+            if arg[1] == 'all':
+                HBNBCommand.do_all(HBNBCommand, 'Amenity')
+            if arg[1] == 'count':
+                HBNBCommand.count(HBNBCommand, 'Amenity')
+            if arg[1] == 'show':
+                HBNBCommand.do_show(HBNBCommand, 'Amenity {}'.format(fnd))
+            if arg[1] == 'destroy':
+                HBNBCommand.do_destroy(HBNBCommand, 'Amenity {}'.format(fnd))
+            if arg[1] == 'update':
+                ls_fd = fnd.split("\", \"")
+                st = 'Amenity {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                HBNBCommand.do_update(HBNBCommand, st)
+
+    @staticmethod
+    def do_Place(args):
+        '''
+        do_Place, use the class.command of the console as input
+        while execute the command inserted
+        '''
+        if args:
+            fnd = args[args.find('("') + 2:args.find('")')]
+            command = args[0:args.find('(')]
+            arg = command.split(".")
+            if arg[1] == 'all':
+                HBNBCommand.do_all(HBNBCommand, 'Place')
+            if arg[1] == 'count':
+                HBNBCommand.count(HBNBCommand, 'Place')
+            if arg[1] == 'show':
+                HBNBCommand.do_show(HBNBCommand, 'Place {}'.format(fnd))
+            if arg[1] == 'destroy':
+                HBNBCommand.do_destroy(HBNBCommand, 'Place {}'.format(fnd))
+            if arg[1] == 'update':
+                ls_fd = fnd.split("\", \"")
+                st = 'Place {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                HBNBCommand.do_update(HBNBCommand, st)
+
+    @staticmethod
+    def do_Review(args):
+        '''
+        do_Review, use the class.command of the console as input
+        while execute the command inserted
+        '''
+        if args:
+            fnd = args[args.find('("') + 2:args.find('")')]
+            command = args[0:args.find('(')]
+            arg = command.split(".")
+            if arg[1] == 'all':
+                HBNBCommand.do_all(HBNBCommand, 'Review')
+            if arg[1] == 'count':
+                HBNBCommand.count(HBNBCommand, 'Review')
+            if arg[1] == 'show':
+                HBNBCommand.do_show(HBNBCommand, 'Review {}'.format(fnd))
+            if arg[1] == 'destroy':
+                HBNBCommand.do_destroy(HBNBCommand, 'Review {}'.format(fnd))
+            if arg[1] == 'update':
+                ls_fd = fnd.split("\", \"")
+                st = 'Review {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                HBNBCommand.do_update(HBNBCommand, st)
+
 
 if __name__ == '__main__':
     HBNBCommand.prompt = '(hbnb) '
