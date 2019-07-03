@@ -53,12 +53,12 @@ class TestState(unittest.TestCase):
         """
         Check string representation of State object
         """
-        state_str = str(self.state)
-        self.assertEqual(True, "[State] ({})".format(self.state.id) in state_str)
-        self.assertEqual(True, "name" in state_str)     
-        self.assertEqual(True, "created_at" in state_str)
-        self.assertEqual(True, "updated_at" in state_str)
-        self.assertEqual(True, "datetime.datetime" in state_str)
+        ste_str = str(self.state)
+        self.assertEqual(True, "[State] ({})".format(self.state.id) in ste_str)
+        self.assertEqual(True, "name" in ste_str)
+        self.assertEqual(True, "created_at" in ste_str)
+        self.assertEqual(True, "updated_at" in ste_str)
+        self.assertEqual(True, "datetime.datetime" in ste_str)
 
     def test_save(self):
         """
