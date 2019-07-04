@@ -22,11 +22,11 @@ class TestFileStorage(unittest.TestCase):
         cls.fs = FileStorage()
         cls.city = City()
         cls.city.state_id = "3773-pqrs"
-        cls.city.name = "Bogotá"        
+        cls.city.name = "Bogotá"
         try:
             os.remove("file.json")
         except Exception:
-            pass        
+            pass
 
     @classmethod
     def teardown(cls):
@@ -63,7 +63,7 @@ class TestFileStorage(unittest.TestCase):
     def test_all(self):
         """
         Check objects dictionary
-        """      
+        """
         self.assertIsNotNone(self.fs.all)
         self.assertTrue(type(self.fs.all is dict))
 
