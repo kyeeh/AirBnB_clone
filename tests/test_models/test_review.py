@@ -2,6 +2,7 @@
 """
 Tests for Review Class
 """
+import os
 import unittest
 from models.base_model import BaseModel
 from models.review import Review
@@ -74,6 +75,7 @@ class TestReview(unittest.TestCase):
         Check save method
         """
         self.rvw.save()
+        self.assertTrue(os.path.isfile('file.json'))
         self.assertNotEqual(self.rvw.created_at, self.rvw.updated_at)
 
     def test_to_dict(self):

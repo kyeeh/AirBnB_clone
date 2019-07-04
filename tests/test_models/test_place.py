@@ -2,6 +2,7 @@
 """
 Tests for Place Class
 """
+import os
 import unittest
 from models.base_model import BaseModel
 from models.place import Place
@@ -104,6 +105,7 @@ class TestPlace(unittest.TestCase):
         Check save method
         """
         self.place.save()
+        self.assertTrue(os.path.isfile('file.json'))
         self.assertNotEqual(self.place.created_at, self.place.updated_at)
 
     def test_to_dict(self):
