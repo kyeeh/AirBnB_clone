@@ -300,7 +300,7 @@ class HBNBCommand(cmd.Cmd):
     def do_Review(args):
         '''
         do_Review, use the class.command of the console as input
-        while execute the command inserted.
+        while execute the command inserted
         '''
         if args:
             fnd = args[args.find('("') + 2:args.find('")')]
