@@ -5,8 +5,8 @@ Tests for HBNBCommand Class
 import os
 import unittest
 import console
-#from models.city import City
-#from models.base_model import BaseModel
+from io import StringIO
+from unittest.mock import patch
 from console import HBNBCommand
 
 
@@ -54,12 +54,42 @@ class TestHBNBCommand(unittest.TestCase):
         self.assertIsNotNone(HBNBCommand.do_Place.__doc__)
         self.assertIsNotNone(HBNBCommand.do_Review.__doc__)
 
-
     def test_init(self):
         """
         Check objects as instance of HBNBCommand
         """
         self.assertTrue(isinstance(self.cli, HBNBCommand))
+
+    def test_quit(self):
+        """
+        Check quit command
+        """        
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("quit")
+            self.assertEqual('', output.getvalue())
+
+    def test_emptyline(self):
+        """
+        Check empty line
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("\n")
+            self.assertEqual('', output.getvalue())
+
+
+    def test_create(self):
+        """
+        Check create command
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("create")
+            self.assertEqual("** class name missing **\n", output.getvalue())
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("create Paula")
+            self.assertEqual("** class doesn't exist **\n", output.getvalue())
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("create City")
+            self.assertTrue(len(output.getvalue()) > 20)        
 
 if __name__ == "__main__":
     unittest.main()
