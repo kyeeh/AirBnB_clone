@@ -30,7 +30,7 @@ class TestBaseModel(unittest.TestCase):
         try:
             os.remove("file.json")
         except Exception:
-            pass        
+            pass
 
     def test_documentation(self):
         """
