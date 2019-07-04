@@ -2,6 +2,7 @@
 """
 Tests for User Class
 """
+import os
 import unittest
 from models.base_model import BaseModel
 from models.user import User
@@ -71,6 +72,7 @@ class TestUser(unittest.TestCase):
         Check save method
         """
         self.user.save()
+        self.assertTrue(os.path.isfile('file.json'))
         self.assertNotEqual(self.user.created_at, self.user.updated_at)
 
     def test_to_dict(self):

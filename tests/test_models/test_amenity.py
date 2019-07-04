@@ -2,6 +2,7 @@
 """
 Tests for Amenity Class
 """
+import os
 import unittest
 from models.base_model import BaseModel
 from models.amenity import Amenity
@@ -71,6 +72,7 @@ class TestAmenity(unittest.TestCase):
         Check save method
         """
         self.amt.save()
+        self.assertTrue(os.path.isfile('file.json'))
         self.assertNotEqual(self.amt.created_at, self.amt.updated_at)
 
     def test_to_dict(self):
