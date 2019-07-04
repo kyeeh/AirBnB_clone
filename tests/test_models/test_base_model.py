@@ -2,6 +2,7 @@
 """
 Tests for BaseModel Class
 """
+import os
 import unittest
 from models.base_model import BaseModel
 
@@ -26,6 +27,10 @@ class TestBaseModel(unittest.TestCase):
         Delete Base Model Class
         """
         del cls.bm
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass        
 
     def test_documentation(self):
         """
@@ -68,6 +73,7 @@ class TestBaseModel(unittest.TestCase):
         """
         self.bm.save()
         self.assertNotEqual(self.bm.created_at, self.bm.updated_at)
+        self.assertTrue(os.path.exists('file.json'))
 
     def test_to_dict(self):
         """
@@ -77,6 +83,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.bm.__class__.__name__, 'BaseModel')
         self.assertIsInstance(bm_dict['created_at'], str)
         self.assertIsInstance(bm_dict['updated_at'], str)
+
+    def tearDown(self):
+        """
+        Delete Base Model JSON file
+        Checks file engine save method
+        """
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
 if __name__ == "__main__":
     unittest.main()
