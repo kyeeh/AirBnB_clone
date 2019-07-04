@@ -2,6 +2,7 @@
 """
 Tests for State Class
 """
+import os
 import unittest
 from models.base_model import BaseModel
 from models.state import State
@@ -65,6 +66,7 @@ class TestState(unittest.TestCase):
         Check save method
         """
         self.state.save()
+        self.assertTrue(os.path.isfile('file.json'))
         self.assertNotEqual(self.state.created_at, self.state.updated_at)
 
     def test_to_dict(self):

@@ -17,23 +17,20 @@ class TestFileStorage(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """
-        Set Base Model Class
+        Set FileStorage Class
         """
         cls.fs = FileStorage()
-        cls.city = City()
-        cls.city.state_id = "3773-pqrs"
-        cls.city.name = "Bogotá"
-        try:
-            os.remove("file.json")
-        except Exception:
-            pass
 
     @classmethod
     def teardown(cls):
         """
-        Delete Base Model Class
+        Delete FileStorage Class
         """
         del cls.fs
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
     def test_documentation(self):
         """
@@ -44,6 +41,15 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(FileStorage.new.__doc__)
         self.assertIsNotNone(FileStorage.save.__doc__)
         self.assertIsNotNone(FileStorage.reload.__doc__)
+
+    def test_attributes(self):
+        """
+        Check FileStorage attributes
+        """
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__objects"))
+        self.assertTrue(type(self.fs._FileStorage__objects) is dict)
+        self.assertTrue(hasattr(FileStorage, "_FileStorage__file_path"))
+        self.assertTrue(type(self.fs._FileStorage__file_path) is str)
 
     def test_methods(self):
         """
@@ -64,8 +70,8 @@ class TestFileStorage(unittest.TestCase):
         """
         Check objects dictionary
         """
-        self.assertIsNotNone(self.fs.all)
-        self.assertTrue(type(self.fs.all is dict))
+        self.assertIsNotNone(self.fs.all())
+        self.assertTrue(type(self.fs.all()) is dict)
 
     def test_new(self):
         """
@@ -89,9 +95,23 @@ class TestFileStorage(unittest.TestCase):
         my_city.state_id = "37731-pqrs"
         my_city.name = "Caracas"
         my_city.save()
+        self.assertTrue(os.path.isfile('file.json'))
         storage.reload()
         my_restored_city = storage.all()["City.{}".format(my_city.id)]
         self.assertTrue(my_restored_city.name == "Caracas")
+        self.assertTrue(os.path.exists('file.json'))
+
+    def test_objects_size(self):
+        """
+        Check replication for JSON and DICT
+        """
+        storage = FileStorage()
+        size_prev = len(storage.all())
+        my_city = City()
+        my_city.state_id = "37731-pqrs"
+        my_city.name = "Caracas"
+        size_after = len(storage.all()) - 1
+        self.assertTrue(size_prev == size_after)
 
 if __name__ == "__main__":
     unittest.main()

@@ -2,6 +2,7 @@
 """
 Tests for City Class
 """
+import os
 import unittest
 from models.base_model import BaseModel
 from models.city import City
@@ -68,6 +69,7 @@ class TestCity(unittest.TestCase):
         """
         self.city.save()
         self.assertNotEqual(self.city.created_at, self.city.updated_at)
+        self.assertTrue(os.path.exists('file.json'))
 
     def test_to_dict(self):
         """
