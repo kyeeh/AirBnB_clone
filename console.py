@@ -304,7 +304,7 @@ class HBNBCommand(cmd.Cmd):
         while execute the command inserted.
         '''
         if args:
-            fnd = args[args.find('("') + 2:args.find(')')]
+            fnd = args[args.find('("') + 2:args.find('")')]
             command = args[0:args.find('(')]
             arg = command.split(".")
             if arg[1] == 'all':
