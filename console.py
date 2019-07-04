@@ -375,7 +375,6 @@ class HBNBCommand(cmd.Cmd):
                     for key, val in dc.items():
                         st = 'Review {} {} {}'.format(fnd3, key, val)
                         HBNBCommand.do_update(HBNBCommand, st)
-                        print(st)
 
 
 if __name__ == '__main__':
