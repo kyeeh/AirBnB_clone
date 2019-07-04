@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 ''' Module class console.py '''
 import cmd
+import ast
 import shlex
 import models
 from models.base_model import BaseModel
@@ -180,6 +181,13 @@ class HBNBCommand(cmd.Cmd):
                 ls_fd = fnd.split("\", \"")
                 st = 'BaseModel {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
                 HBNBCommand.do_update(HBNBCommand, st)
+                if len(arg) >= 2:
+                    fnd2 = fnd[0:fnd.find('", ')]
+                    fnd3 = fnd[fnd.find(', ') + 2:args.find(')')]
+                    fnd4 = ast.literal_eval(fnd3)
+                    for key, val in fnd4.items():
+                        st = 'BaseModel {} {} {}'.format(fnd2, key, val)
+                        HBNBCommand.do_update(HBNBCommand, st)
 
     @staticmethod
     def do_User(args):
@@ -203,6 +211,13 @@ class HBNBCommand(cmd.Cmd):
                 ls_fd = fnd.split("\", \"")
                 st = 'User {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
                 HBNBCommand.do_update(HBNBCommand, st)
+                if len(arg) >= 2:
+                    fnd2 = fnd[0:fnd.find('", ')]
+                    fnd3 = fnd[fnd.find(', ') + 2:args.find(')')]
+                    fnd4 = ast.literal_eval(fnd3)
+                    for key, val in fnd4.items():
+                        st = 'User {} {} {}'.format(fnd2, key, val)
+                        HBNBCommand.do_update(HBNBCommand, st)
 
     @staticmethod
     def do_State(args):
@@ -226,6 +241,13 @@ class HBNBCommand(cmd.Cmd):
                 ls_fd = fnd.split("\", \"")
                 st = 'State {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
                 HBNBCommand.do_update(HBNBCommand, st)
+                if len(arg) >= 2:
+                    fnd2 = fnd[0:fnd.find('", ')]
+                    fnd3 = fnd[fnd.find(', ') + 2:args.find(')')]
+                    fnd4 = ast.literal_eval(fnd3)
+                    for key, val in fnd4.items():
+                        st = 'State {} {} {}'.format(fnd2, key, val)
+                        HBNBCommand.do_update(HBNBCommand, st)
 
     @staticmethod
     def do_City(args):
@@ -249,6 +271,13 @@ class HBNBCommand(cmd.Cmd):
                 ls_fd = fnd.split("\", \"")
                 st = 'City {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
                 HBNBCommand.do_update(HBNBCommand, st)
+                if len(arg) >= 2:
+                    fnd2 = fnd[0:fnd.find('", ')]
+                    fnd3 = fnd[fnd.find(', ') + 2:args.find(')')]
+                    fnd4 = ast.literal_eval(fnd3)
+                    for key, val in fnd4.items():
+                        st = 'City {} {} {}'.format(fnd2, key, val)
+                        HBNBCommand.do_update(HBNBCommand, st)
 
     @staticmethod
     def do_Amenity(args):
@@ -272,6 +301,13 @@ class HBNBCommand(cmd.Cmd):
                 ls_fd = fnd.split("\", \"")
                 st = 'Amenity {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
                 HBNBCommand.do_update(HBNBCommand, st)
+                if len(arg) >= 2:
+                    fnd2 = fnd[0:fnd.find('", ')]
+                    fnd3 = fnd[fnd.find(', ') + 2:args.find(')')]
+                    fnd4 = ast.literal_eval(fnd3)
+                    for key, val in fnd4.items():
+                        st = 'Amenity {} {} {}'.format(fnd2, key, val)
+                        HBNBCommand.do_update(HBNBCommand, st)
 
     @staticmethod
     def do_Place(args):
@@ -295,6 +331,13 @@ class HBNBCommand(cmd.Cmd):
                 ls_fd = fnd.split("\", \"")
                 st = 'Place {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
                 HBNBCommand.do_update(HBNBCommand, st)
+                if len(arg) >= 2:
+                    fnd2 = fnd[0:fnd.find('", ')]
+                    fnd3 = fnd[fnd.find(', ') + 2:args.find(')')]
+                    fnd4 = ast.literal_eval(fnd3)
+                    for key, val in fnd4.items():
+                        st = 'Place {} {} {}'.format(fnd2, key, val)
+                        HBNBCommand.do_update(HBNBCommand, st)
 
     @staticmethod
     def do_Review(args):
@@ -315,9 +358,17 @@ class HBNBCommand(cmd.Cmd):
             if arg[1] == 'destroy':
                 HBNBCommand.do_destroy(HBNBCommand, 'Review {}'.format(fnd))
             if arg[1] == 'update':
-                ls_fd = fnd.split("\", \"")
-                st = 'Review {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
-                HBNBCommand.do_update(HBNBCommand, st)
+                if len(arg) >= 3:
+                    ls_fd = fnd.split("\", \"")
+                    st = 'Review {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                    HBNBCommand.do_update(HBNBCommand, st)
+                if len(arg) >= 2:
+                    fnd2 = fnd[0:fnd.find('", ')]
+                    fnd3 = fnd[fnd.find(', ') + 2:args.find(')')]
+                    fnd4 = ast.literal_eval(fnd3)
+                    for key, val in fnd4.items():
+                        st = 'Review {} {} {}'.format(fnd2, key, val)
+                        HBNBCommand.do_update(HBNBCommand, st)
 
 
 if __name__ == '__main__':
