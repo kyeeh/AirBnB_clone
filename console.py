@@ -179,7 +179,8 @@ class HBNBCommand(cmd.Cmd):
                 HBNBCommand.do_destroy(HBNBCommand, 'BaseModel {}'.format(fnd))
             if arg[1] == 'update':
                 ls_fd = fnd.split("\", \"")
-                st = 'BaseModel {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                st = 'BaseModel {} {} {}'.format(ls_fd[0], ls_fd[1],
+                                                 ls_fd[2])
                 HBNBCommand.do_update(HBNBCommand, st)
                 if len(arg) >= 2:
                     fnd2 = fnd[0:fnd.find('", ')]
@@ -343,7 +344,7 @@ class HBNBCommand(cmd.Cmd):
     def do_Review(args):
         '''
         do_Review, use the class.command of the console as input
-        while execute the command inserted
+        while execute the command inserted.
         '''
         if args:
             fnd = args[args.find('("') + 2:args.find('")')]
