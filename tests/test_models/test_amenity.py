@@ -3,6 +3,7 @@
 Tests for Amenity Class
 """
 import os
+import pep8
 import unittest
 from models.base_model import BaseModel
 from models.amenity import Amenity
@@ -31,6 +32,17 @@ class TestAmenity(unittest.TestCase):
             os.remove("file.json")
         except:
             pass
+
+    def test_pep8_Amenity(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/amenity.py"
+        tests = "tests/test_models/test_amenity.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """
@@ -70,6 +82,7 @@ class TestAmenity(unittest.TestCase):
         Check types defined
         """
         self.assertEqual(type(self.amt.name), str)
+        self.assertTrue(hasattr(self.amt, "name"))
 
     def test_save(self):
         """

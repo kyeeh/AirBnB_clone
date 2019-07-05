@@ -3,6 +3,7 @@
 Tests for Review Class
 """
 import os
+import pep8
 import unittest
 from models.base_model import BaseModel
 from models.review import Review
@@ -33,6 +34,17 @@ class TestReview(unittest.TestCase):
             os.remove("file.json")
         except:
             pass
+
+    def test_pep8_Review(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/review.py"
+        tests = "tests/test_models/test_review.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """

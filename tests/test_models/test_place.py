@@ -3,6 +3,7 @@
 Tests for Place Class
 """
 import os
+import pep8
 import unittest
 from models.base_model import BaseModel
 from models.place import Place
@@ -43,6 +44,17 @@ class TestPlace(unittest.TestCase):
             os.remove("file.json")
         except:
             pass
+
+    def test_pep8_Place(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/place.py"
+        tests = "tests/test_models/test_place.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """

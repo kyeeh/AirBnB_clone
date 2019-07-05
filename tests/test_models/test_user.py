@@ -3,6 +3,7 @@
 Tests for User Class
 """
 import os
+import pep8
 import unittest
 from models.base_model import BaseModel
 from models.user import User
@@ -35,6 +36,17 @@ class TestUser(unittest.TestCase):
         except:
             pass
 
+    def test_pep8_User(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/user.py"
+        tests = "tests/test_models/test_user.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
+
     def test_documentation(self):
         """
         Check documentation
@@ -53,7 +65,6 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(self.user, "password"))
         self.assertTrue(hasattr(self.user, "first_name"))
         self.assertTrue(hasattr(self.user, "last_name"))
-        #self.assertEqual(type(self.user.name), str)
 
     def test_methods(self):
         """
