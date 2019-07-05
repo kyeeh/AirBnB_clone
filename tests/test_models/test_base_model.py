@@ -3,6 +3,7 @@
 Tests for BaseModel Class
 """
 import os
+import pep8
 import unittest
 from models.base_model import BaseModel
 
@@ -31,6 +32,17 @@ class TestBaseModel(unittest.TestCase):
             os.remove("file.json")
         except Exception:
             pass
+
+    def test_pep8_User(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/base_model.py"
+        tests = "tests/test_models/test_base_model.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """
@@ -83,6 +95,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.bm.__class__.__name__, 'BaseModel')
         self.assertIsInstance(bm_dict['created_at'], str)
         self.assertIsInstance(bm_dict['updated_at'], str)
+        self.assertEqual(type(bm_dict), dict)
 
     def tearDown(self):
         """

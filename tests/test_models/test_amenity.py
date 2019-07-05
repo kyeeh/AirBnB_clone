@@ -3,6 +3,7 @@
 Tests for Amenity Class
 """
 import os
+import pep8
 import unittest
 from models.base_model import BaseModel
 from models.amenity import Amenity
@@ -27,6 +28,21 @@ class TestAmenity(unittest.TestCase):
         Delete Amenity Class
         """
         del cls.amt
+        try:
+            os.remove("file.json")
+        except:
+            pass
+
+    def test_pep8_Amenity(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/amenity.py"
+        tests = "tests/test_models/test_amenity.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """
@@ -66,6 +82,7 @@ class TestAmenity(unittest.TestCase):
         Check types defined
         """
         self.assertEqual(type(self.amt.name), str)
+        self.assertTrue(hasattr(self.amt, "name"))
 
     def test_save(self):
         """
@@ -83,6 +100,7 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(self.amt.__class__.__name__, 'Amenity')
         self.assertIsInstance(amt_dict['created_at'], str)
         self.assertIsInstance(amt_dict['updated_at'], str)
+        self.assertEqual(type(amt_dict), dict)
 
 if __name__ == "__main__":
     unittest.main()

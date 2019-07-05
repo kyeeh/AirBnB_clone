@@ -3,6 +3,7 @@
 Tests for FileStorage Class
 """
 import os
+import pep8
 import unittest
 from models.__init__ import storage
 from models.city import City
@@ -38,6 +39,17 @@ class TestFileStorage(unittest.TestCase):
             os.remove("file.json")
         except Exception:
             pass
+
+    def test_pep8_FileStorage(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/engine/file_storage.py"
+        tests = "tests/test_models/test_engine/test_file_storage.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """
@@ -93,9 +105,24 @@ class TestFileStorage(unittest.TestCase):
         key = my_city.__class__.__name__ + "." + str(my_city.id)
         self.assertIsNotNone(objects[key])
 
-    def test_save_and_restore(self):
+    def test_save(self):
         """
-        Check save adn restore methods
+        Check save methods
+        """
+        storage = FileStorage()
+        my_city = City()
+        my_city.state_id = "37731-pqrs"
+        my_city.name = "Caracas"
+        my_city.save()
+        self.assertTrue(os.path.isfile('file.json'))
+        storage.reload()
+        my_restored_city = storage.all()["City.{}".format(my_city.id)]
+        self.assertTrue(my_restored_city.name == "Caracas")
+        self.assertTrue(os.path.exists('file.json'))
+
+    def test_restore(self):
+        """
+        Check restore methods
         """
         storage = FileStorage()
         my_city = City()

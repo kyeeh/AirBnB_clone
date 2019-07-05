@@ -3,6 +3,7 @@
 Tests for State Class
 """
 import os
+import pep8
 import unittest
 from models.base_model import BaseModel
 from models.state import State
@@ -27,6 +28,21 @@ class TestState(unittest.TestCase):
         Delete State Class
         """
         del cls.state
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
+
+    def test_pep8_State(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/state.py"
+        tests = "tests/test_models/test_state.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """
@@ -34,6 +50,16 @@ class TestState(unittest.TestCase):
         """
         self.assertIsNotNone(State.__doc__)
         self.assertIsNotNone(State.__init__.__doc__)
+
+    def test_attributes(self):
+        """
+        Check State attributes
+        """
+        self.assertTrue('id' in self.state.__dict__)
+        self.assertTrue('created_at' in self.state.__dict__)
+        self.assertTrue('updated_at' in self.state.__dict__)
+        self.assertTrue(hasattr(State, "name"))
+        self.assertEqual(type(self.state.name), str)
 
     def test_methods(self):
         """
@@ -77,6 +103,7 @@ class TestState(unittest.TestCase):
         self.assertEqual(self.state.__class__.__name__, 'State')
         self.assertIsInstance(state_dict['created_at'], str)
         self.assertIsInstance(state_dict['updated_at'], str)
+        self.assertEqual(type(state_dict), dict)
 
 if __name__ == "__main__":
     unittest.main()

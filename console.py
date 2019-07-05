@@ -180,7 +180,8 @@ class HBNBCommand(cmd.Cmd):
             if arg[1] == 'update':
                 ls_fd = fnd.split("\", \"")
                 if len(ls_fd) >= 3:
-                    st = 'BaseModel {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                    st = 'BaseModel {} {} {}'.format(ls_fd[0],
+                                                     ls_fd[1], ls_fd[2])
                     HBNBCommand.do_update(HBNBCommand, st)
                 else:
                     fnd3 = fnd[0:fnd.find('"')]
@@ -304,7 +305,8 @@ class HBNBCommand(cmd.Cmd):
             if arg[1] == 'update':
                 ls_fd = fnd.split("\", \"")
                 if len(ls_fd) >= 3:
-                    st = 'Amenity {} {} {}'.format(ls_fd[0], ls_fd[1], ls_fd[2])
+                    st = 'Amenity {} {} {}'.format(ls_fd[0],
+                                                   ls_fd[1], ls_fd[2])
                     HBNBCommand.do_update(HBNBCommand, st)
                 else:
                     fnd3 = fnd[0:fnd.find('"')]

@@ -3,6 +3,7 @@
 Tests for City Class
 """
 import os
+import pep8
 import unittest
 from models.base_model import BaseModel
 from models.city import City
@@ -28,6 +29,21 @@ class TestCity(unittest.TestCase):
         Delete City Class
         """
         del cls.city
+        try:
+            os.remove("file.json")
+        except:
+            pass
+
+    def test_pep8_City(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/city.py"
+        tests = "tests/test_models/test_city.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """
@@ -35,6 +51,16 @@ class TestCity(unittest.TestCase):
         """
         self.assertIsNotNone(City.__doc__)
         self.assertIsNotNone(City.__init__.__doc__)
+
+    def test_attributes(self):
+        """
+        Check User attributes
+        """
+        self.assertTrue('id' in self.city.__dict__)
+        self.assertTrue('created_at' in self.city.__dict__)
+        self.assertTrue('updated_at' in self.city.__dict__)
+        self.assertTrue(hasattr(self.city, "name"))
+        self.assertTrue(hasattr(self.city, "state_id"))
 
     def test_methods(self):
         """
@@ -79,6 +105,7 @@ class TestCity(unittest.TestCase):
         self.assertEqual(self.city.__class__.__name__, 'City')
         self.assertIsInstance(city_dict['created_at'], str)
         self.assertIsInstance(city_dict['updated_at'], str)
+        self.assertEqual(type(city_dict), dict)
 
 if __name__ == "__main__":
     unittest.main()

@@ -3,6 +3,7 @@
 Tests for User Class
 """
 import os
+import pep8
 import unittest
 from models.base_model import BaseModel
 from models.user import User
@@ -30,6 +31,21 @@ class TestUser(unittest.TestCase):
         Delete User Class
         """
         del cls.user
+        try:
+            os.remove("file.json")
+        except:
+            pass
+
+    def test_pep8_User(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "models/user.py"
+        tests = "tests/test_models/test_user.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """
@@ -37,6 +53,18 @@ class TestUser(unittest.TestCase):
         """
         self.assertIsNotNone(User.__doc__)
         self.assertIsNotNone(User.__init__.__doc__)
+
+    def test_attributes(self):
+        """
+        Check User attributes
+        """
+        self.assertTrue('id' in self.user.__dict__)
+        self.assertTrue('created_at' in self.user.__dict__)
+        self.assertTrue('updated_at' in self.user.__dict__)
+        self.assertTrue(hasattr(self.user, "email"))
+        self.assertTrue(hasattr(self.user, "password"))
+        self.assertTrue(hasattr(self.user, "first_name"))
+        self.assertTrue(hasattr(self.user, "last_name"))
 
     def test_methods(self):
         """
@@ -83,6 +111,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.__class__.__name__, 'User')
         self.assertIsInstance(user_dict['created_at'], str)
         self.assertIsInstance(user_dict['updated_at'], str)
+        self.assertEqual(type(user_dict), dict)
 
 if __name__ == "__main__":
     unittest.main()
