@@ -3,8 +3,9 @@
 Tests for HBNBCommand Class
 """
 import os
-import unittest
+import pep8
 import console
+import unittest
 from io import StringIO
 from unittest.mock import patch
 from console import HBNBCommand
@@ -32,6 +33,17 @@ class TestHBNBCommand(unittest.TestCase):
             os.remove("file.json")
         except Exception:
             pass
+
+    def test_pep8_Console(self):
+        """
+        Check pep8
+        """
+        psg = pep8.StyleGuide(quiet=True)
+        model = "console.py"
+        tests = "tests/test_console.py"
+        results = psg.check_files([model, tests])
+        self.assertEqual(results.total_errors, 0,
+                         "Found code style errors (and warnings).")
 
     def test_documentation(self):
         """
@@ -140,6 +152,41 @@ class TestHBNBCommand(unittest.TestCase):
             self.cli.onecmd("City.all()")
             self.assertTrue("[" in output.getvalue())
             self.assertTrue("]\n" in output.getvalue())
+
+    def test_update(self):
+        """
+        Check update command
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("update")
+            self.assertEqual("** class name missing **\n", output.getvalue())
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("update Guaco")
+            self.assertEqual("** class doesn't exist **\n", output.getvalue())
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("update City")
+            self.assertEqual("** instance id missing **\n", output.getvalue())
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("update City 37731-pqrs")
+            self.assertEqual
+            ("** attribute name missing **\n", output.getvalue())
+
+    def test_count(self):
+        """
+        Check count command
+        """
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("count")
+            self.assertEqual("** class name missing **\n", output.getvalue())
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("Guaco.count()")
+            self.assertEqual("** class doesn't exist **\n", output.getvalue())
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("Review.count")
+            self.assertEqual("** instance id missing **\n", output.getvalue())
+        with patch('sys.stdout', new=StringIO()) as output:
+            self.cli.onecmd("Amenity.count()")
+            self.assertEqual("** no instance found **\n", output.getvalue())
 
 if __name__ == "__main__":
     unittest.main()
