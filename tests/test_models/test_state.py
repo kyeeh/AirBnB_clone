@@ -27,6 +27,10 @@ class TestState(unittest.TestCase):
         Delete State Class
         """
         del cls.state
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
     def test_documentation(self):
         """
@@ -34,6 +38,16 @@ class TestState(unittest.TestCase):
         """
         self.assertIsNotNone(State.__doc__)
         self.assertIsNotNone(State.__init__.__doc__)
+
+    def test_attributes(self):
+        """
+        Check State attributes
+        """
+        self.assertTrue('id' in self.state.__dict__)
+        self.assertTrue('created_at' in self.state.__dict__)
+        self.assertTrue('updated_at' in self.state.__dict__)
+        self.assertTrue(hasattr(State, "name"))
+        self.assertEqual(type(self.state.name), str)
 
     def test_methods(self):
         """
