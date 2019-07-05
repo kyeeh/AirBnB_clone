@@ -4,6 +4,7 @@ Tests for FileStorage Class
 """
 import os
 import unittest
+from models.__init__ import storage
 from models.city import City
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
@@ -13,6 +14,12 @@ class TestFileStorage(unittest.TestCase):
     """
     Test for FileStorage Class
     """
+    def setUp(self):
+        """ set variables to be use """
+
+
+    def tearDown(self):
+        """ End the variables used """
 
     @classmethod
     def setUpClass(cls):
@@ -100,6 +107,8 @@ class TestFileStorage(unittest.TestCase):
         my_restored_city = storage.all()["City.{}".format(my_city.id)]
         self.assertTrue(my_restored_city.name == "Caracas")
         self.assertTrue(os.path.exists('file.json'))
+        self.assertTrue(my_city.created_at,
+                        my_city.updated_at)
 
     def test_objects_size(self):
         """
