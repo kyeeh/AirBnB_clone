@@ -45,10 +45,10 @@ class TestUser(unittest.TestCase):
         self.assertTrue('id' in self.user.__dict__)
         self.assertTrue('created_at' in self.user.__dict__)
         self.assertTrue('updated_at' in self.user.__dict__)
-        self.assertTrue(hasattr(User, "email"))
-        self.assertTrue(hasattr(User, "password"))
-        self.assertTrue(hasattr(User, "first_name"))
-        self.assertTrue(hasattr(User, "last_name"))
+        self.assertTrue(hasattr(self.user, "email"))
+        self.assertTrue(hasattr(self.user, "password"))
+        self.assertTrue(hasattr(self.user, "first_name"))
+        self.assertTrue(hasattr(self.user, "last_name"))
         #self.assertEqual(type(self.user.name), str)
 
     def test_methods(self):
