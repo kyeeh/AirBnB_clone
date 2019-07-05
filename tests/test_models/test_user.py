@@ -38,6 +38,19 @@ class TestUser(unittest.TestCase):
         self.assertIsNotNone(User.__doc__)
         self.assertIsNotNone(User.__init__.__doc__)
 
+    def test_attributes(self):
+        """
+        Check User attributes
+        """
+        self.assertTrue('id' in self.user.__dict__)
+        self.assertTrue('created_at' in self.user.__dict__)
+        self.assertTrue('updated_at' in self.user.__dict__)
+        self.assertTrue(hasattr(User, "email"))
+        self.assertTrue(hasattr(User, "password"))
+        self.assertTrue(hasattr(User, "first_name"))
+        self.assertTrue(hasattr(User, "last_name"))
+        #self.assertEqual(type(self.user.name), str)
+
     def test_methods(self):
         """
         Check User and Basemodel methods
