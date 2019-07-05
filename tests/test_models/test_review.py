@@ -29,6 +29,10 @@ class TestReview(unittest.TestCase):
         Delete Review Class
         """
         del cls.rvw
+        try:
+            os.remove("file.json")
+        except:
+            pass
 
     def test_documentation(self):
         """
@@ -86,6 +90,7 @@ class TestReview(unittest.TestCase):
         self.assertEqual(self.rvw.__class__.__name__, 'Review')
         self.assertIsInstance(rvw_dict['created_at'], str)
         self.assertIsInstance(rvw_dict['updated_at'], str)
+        self.assertEqual(type(rvw_dict), dict)
 
 if __name__ == "__main__":
     unittest.main()

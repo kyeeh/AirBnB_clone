@@ -39,6 +39,10 @@ class TestPlace(unittest.TestCase):
         Delete Place Class
         """
         del cls.place
+        try:
+            os.remove("file.json")
+        except:
+            pass
 
     def test_documentation(self):
         """
@@ -116,6 +120,7 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(self.place.__class__.__name__, 'Place')
         self.assertIsInstance(place_dict['created_at'], str)
         self.assertIsInstance(place_dict['updated_at'], str)
+        self.assertEqual(type(place_dict), dict)
 
 if __name__ == "__main__":
     unittest.main()

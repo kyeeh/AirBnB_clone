@@ -30,6 +30,10 @@ class TestUser(unittest.TestCase):
         Delete User Class
         """
         del cls.user
+        try:
+            os.remove("file.json")
+        except:
+            pass
 
     def test_documentation(self):
         """
@@ -96,6 +100,7 @@ class TestUser(unittest.TestCase):
         self.assertEqual(self.user.__class__.__name__, 'User')
         self.assertIsInstance(user_dict['created_at'], str)
         self.assertIsInstance(user_dict['updated_at'], str)
+        self.assertEqual(type(user_dict), dict)
 
 if __name__ == "__main__":
     unittest.main()

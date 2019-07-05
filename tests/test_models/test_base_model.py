@@ -83,6 +83,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(self.bm.__class__.__name__, 'BaseModel')
         self.assertIsInstance(bm_dict['created_at'], str)
         self.assertIsInstance(bm_dict['updated_at'], str)
+        self.assertEqual(type(bm_dict), dict)
 
     def tearDown(self):
         """

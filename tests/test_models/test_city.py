@@ -28,6 +28,10 @@ class TestCity(unittest.TestCase):
         Delete City Class
         """
         del cls.city
+        try:
+            os.remove("file.json")
+        except:
+            pass
 
     def test_documentation(self):
         """
@@ -79,6 +83,7 @@ class TestCity(unittest.TestCase):
         self.assertEqual(self.city.__class__.__name__, 'City')
         self.assertIsInstance(city_dict['created_at'], str)
         self.assertIsInstance(city_dict['updated_at'], str)
+        self.assertEqual(type(city_dict), dict)
 
 if __name__ == "__main__":
     unittest.main()

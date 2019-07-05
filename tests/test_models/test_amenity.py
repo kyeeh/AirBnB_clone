@@ -27,6 +27,10 @@ class TestAmenity(unittest.TestCase):
         Delete Amenity Class
         """
         del cls.amt
+        try:
+            os.remove("file.json")
+        except:
+            pass
 
     def test_documentation(self):
         """
@@ -83,6 +87,7 @@ class TestAmenity(unittest.TestCase):
         self.assertEqual(self.amt.__class__.__name__, 'Amenity')
         self.assertIsInstance(amt_dict['created_at'], str)
         self.assertIsInstance(amt_dict['updated_at'], str)
+        self.assertEqual(type(amt_dict), dict)
 
 if __name__ == "__main__":
     unittest.main()
