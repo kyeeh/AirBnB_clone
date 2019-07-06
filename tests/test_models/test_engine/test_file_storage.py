@@ -18,7 +18,6 @@ class TestFileStorage(unittest.TestCase):
     def setUp(self):
         """ set variables to be use """
 
-
     def tearDown(self):
         """ End the variables used """
 
