@@ -1,0 +1,42 @@
+div.container section.filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #FFFFFF;
+    height: 70px;
+	width: 100%;
+	border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+
+div.container section.filters .locations {
+    width: 25%;
+    height: 100%;
+    border-right: 1px solid #DDDDDD;
+}
+
+div.container section.filters .amenities {
+    width: 25%;
+    height: 100%;
+}
+
+div.container section.filters h3 {
+    font-weight: 600;
+    margin: .7em 0em 0em 2.5em;
+}
+
+div.container section.filters h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin: .25em 0em .5em 2.9em;
+}
+
+div.container section.filters button {
+	font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+	height: 48px;
+	width: 20%;
+	border: none;
+    margin: auto 30px auto auto;
+}
