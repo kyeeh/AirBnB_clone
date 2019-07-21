@@ -80,3 +80,7 @@ section.places .information .number_bathrooms {
 div.container section.places .user {
     margin: 1em 0 .5em 0;
 }
+
+footer {
+    position: relative; 
+}
